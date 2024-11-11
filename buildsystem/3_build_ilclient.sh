@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://github.com/raspberrypi/userland
+
 # Set current folder as home
 HOME="`cd $0 >/dev/null 2>&1; pwd`" >/dev/null 2>&1
 

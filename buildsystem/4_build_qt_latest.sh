@@ -1,29 +1,30 @@
 #!/bin/bash
+set -e
 
 # Set variables
 QT_URL=https://download.qt.io/official_releases/qt/
 QT_VERSION=$(curl -s $QT_URL | grep -oE -m1 href=\"[0-9\.]+ |  tr -d 'href="')
 QT_VERSION='5.15'
 QT_FULL_VERSION=$(curl -s $QT_URL$QT_VERSION/ | grep -oE -m1 href=\"[0-9\.]+ |  tr -d 'href="')
-QT_FULL_VERSION='5.15.1'
-QT_FILENAME=qt-everywhere-src-${QT_FULL_VERSION}.tar.xz
-DEVICE_OPT=linux-rasp-pi3-g++
-if [ -z "${CPU_CORES_COUNT}"]; then
+QT_FULL_VERSION='5.15.8'
+QT_FILENAME=qt-everywhere-opensource-src-${QT_FULL_VERSION}.tar.xz
+DEVICE_OPT=linux-rpi3-g++
+if [ -z "${CPU_CORES_COUNT}" ]; then
   CPU_CORES_COUNT=`grep -c ^processor /proc/cpuinfo`
 fi
 # Lookup for PI version
 PIVERSION=`grep ^Model /proc/cpuinfo` 
 if [[ ${PIVERSION} =~ 'Raspberry Pi 3' ]]; then
-   DEVICE_OPT=linux-rasp-pi3-vc4-g++
+   DEVICE_OPT=linux-rpi2-vc4-g++
    KMS='-kms'
 elif [[ ${PIVERSION} =~ 'Raspberry Pi 4' ]]; then
-   DEVICE_OPT=linux-rasp-pi4-v3d-g++
+   DEVICE_OPT=linux-rpi4-v3d-g++
    KMS='-kms'
 elif [[ ${PIVERSION} =~ 'Raspberry Pi 2' ]]; then
-   DEVICE_OPT=linux-rasp-pi2-g++
+   DEVICE_OPT=linux-rpi2-vc4-g++
    KMS='-kms'
 else
-   DEVICE_OPT=linux-rasp-pi-g++
+   DEVICE_OPT=linux-rpi-g++
    KMS='-kms'
 fi
 # Set current folder as home
@@ -54,20 +55,26 @@ if ! [ -d qt-everywhere-src-${QT_FULL_VERSION} ]; then
     pv -p -w 80 ${HOME}/qt${QT_FILE_VERSION}/${QT_FILENAME} | tar -J -xf - -C ${HOME}/qt${QT_FILE_VERSION}/src
 fi
 
+# https://www.tal.org/tutorials/building-qt-515-lts-raspberry-pi-raspberry-pi-os
+# clone qt configs and build
+if [ ! -d qt-raspberrypi-configuration ]; then
+  git clone https://github.com/oniongarlic/qt-raspberrypi-configuration.git
+fi
+cd qt-raspberrypi-configuration && make install DESTDIR=../qt-everywhere-src-${QT_FULL_VERSION} QTVERSION=${QT_FULL_VERSION}
+
 # Switch to build directory and build
 cd ${HOME}/qt${QT_FILE_VERSION}_build
 
 QT_QPA_EGLFS_KMS_CONFIG=${HOME}/eglfs.json
 PKG_CONFIG_LIBDIR=/usr/lib/arm-linux-gnueabihf/pkgconfig:/usr/share/pkgconfig \
-${HOME}/qt${QT_FILE_VERSION}/src/qt-everywhere-src-${QT_FULL_VERSION}/configure -device ${DEVICE_OPT} \
--device-option CROSS_COMPILE=arm-linux-gnueabihf- \
--sysroot / \
+${HOME}/qt${QT_FILE_VERSION}/src/qt-everywhere-src-${QT_FULL_VERSION}/configure -platform ${DEVICE_OPT} \
 -opengl es2 -eglfs -linuxfb ${KMS} -xcb \
 -prefix /usr/local/qt5 \
 -opensource -confirm-license \
 -release -v \
 -nomake examples -no-compile-examples \
 -no-use-gold-linker \
+-no-feature-eglfs_brcm \
 -recheck-all \
 -skip qtwebengine \
 -skip qtwayland \
