@@ -16,7 +16,7 @@ fi
 # Lookup for PI version
 PIVERSION=`grep ^Model /proc/cpuinfo` 
 if [[ ${PIVERSION} =~ 'Raspberry Pi 3' ]]; then
-   DEVICE_OPT=linux-rpi2-vc4-g++
+   DEVICE_OPT=linux-rpi3-vc4-g++
    KMS='-kms'
 elif [[ ${PIVERSION} =~ 'Raspberry Pi 4' ]]; then
    DEVICE_OPT=linux-rpi4-v3d-g++

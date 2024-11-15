@@ -12,6 +12,7 @@ cd userland && ./buildme
 # Create inside build folder
 cd /opt/vc/src/hello_pi/libs/ilclient
 make clean
-make -j2
+# not sure why this needs sudo
+sudo make -j2
 
 cd $HOME

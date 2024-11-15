@@ -43,4 +43,9 @@ tar -cvf $HOME/BINARY_FILES/Qt_${QTVERSION}_${ARMARCH}_OpenGLES2.tar.xz /usr/loc
 split -b 50m -d $HOME/BINARY_FILES/Qt_${QTVERSION}_${ARMARCH}_OpenGLES2.tar.xz "$HOME/BINARY_FILES/Qt_${QTVERSION}_${ARMARCH}_OpenGLES2.tar.xz.part"
 rm $HOME/BINARY_FILES/Qt_${QTVERSION}_${ARMARCH}_OpenGLES2.tar.xz
 
+# Create compressed broadcom libraries
+tar -cvf $HOME/BINARY_FILES/Broadcom_Legacy.tar.xz /opt/vc
+split -b 50m -d $HOME/BINARY_FILES/Broadcom_Legacy.tar.xz "$HOME/BINARY_FILES/Broadcom_Legacy.tar.xz.part"
+rm $HOME/BINARY_FILES/Broadcom_Legacy.tar.xz
+
 cd $HOME
