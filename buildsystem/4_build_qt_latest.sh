@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -o pipefail
 
 # Set variables
 QT_URL=https://download.qt.io/official_releases/qt/
@@ -72,12 +73,11 @@ ${HOME}/qt${QT_FILE_VERSION}/src/qt-everywhere-src-${QT_FULL_VERSION}/configure 
 -prefix /usr/local/qt5 \
 -opensource -confirm-license \
 -release -v \
--nomake examples -no-compile-examples \
+-nomake examples -no-compile-examples -nomake tests \
 -no-use-gold-linker \
 -no-feature-eglfs_brcm \
 -recheck-all \
 -skip qtwebengine \
--skip qtwayland \
 -no-gtk \
 -reduce-exports \
 -force-pkg-config \

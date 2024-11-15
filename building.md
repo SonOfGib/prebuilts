@@ -3,9 +3,13 @@
 ## SD card prep
 
 1. Download Latest Crankshaft version
-1. Burn to SD Card
-1. Turn on Dev_Mode, Set DEV_MODE=1 in /boot/crankshaft/crankshaft_env.sh
+2. Burn to SD Card
+3. Turn on Dev_Mode, Set DEV_MODE=1 in /boot/crankshaft/crankshaft_env.sh
+
+### QT Setup 
 1. Set memory split to 16MB for GPU, via raspi-config. This is needed to stop Qt compile from running out of memory
+2. Create a swapfile (external HDD/SSD is best) and set a low swappiness value (5 seemed fine for me) 972M was not enough
+ram on rpi3b+ for qt.
 
 ## Full Recompile
 
