@@ -14,11 +14,6 @@ if [ -f ./buildsystem/BINARY_FILES/Qt*_OpenGLES2.tar.xz.part00 ]; then
     cp ./buildsystem/BINARY_FILES/Qt* ./qt5/
 fi
 
-# Copy Broadcom Legacy
-if [ -f ./buildsystem/BINARY_FILES/Broadcom_Legacy.tar.xz.part00 ]; then
-    cp ./buildsystem/BINARY_FILES/Broadcom_Legacy* ./broadcom_legacy/
-fi
-
 # Copy openauto
 if [ -f ./buildsystem/BINARY_FILES/autoapp ]; then
     cp ./buildsystem/BINARY_FILES/autoapp ./openauto/
