@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z "${CPU_CORES_COUNT}"]; then
+if [ -z "${CPU_CORES_COUNT}" ]; then
   CPU_CORES_COUNT=`grep -c ^processor /proc/cpuinfo`
 fi
 # Install Pre-reqs
