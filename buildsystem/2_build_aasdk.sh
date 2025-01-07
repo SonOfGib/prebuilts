@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [-z "${AASDK_GIT_REPO}" ]; then
+if [ -z "${AASDK_GIT_REPO}" ]; then
   AASDK_GIT_REPO='https://github.com/opencardev/aasdk.git'
 fi
 

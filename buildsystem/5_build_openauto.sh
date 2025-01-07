@@ -2,7 +2,7 @@
 if [ -z "${CPU_CORES_COUNT}" ]; then
   CPU_CORES_COUNT=`grep -c ^processor /proc/cpuinfo`
 fi
-if [-z "${OPENAUTO_GIT_REPO}" ]; then
+if [ -z "${OPENAUTO_GIT_REPO}" ]; then
   OPENAUTO_GIT_REPO='https://github.com/opencardev/openauto.git'
 fi
 # Install Pre-reqs
