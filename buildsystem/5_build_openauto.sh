@@ -2,6 +2,9 @@
 if [ -z "${CPU_CORES_COUNT}" ]; then
   CPU_CORES_COUNT=`grep -c ^processor /proc/cpuinfo`
 fi
+if [-z "${GIT_REPO}" ]; then
+  GIT_REPO='https://github.com/opencardev/openauto.git'
+fi
 # Install Pre-reqs
 sudo apt-get -y install cmake build-essential git
 sudo apt-get -y install libboost-all-dev libusb-1.0.0-dev libssl-dev cmake libprotobuf-dev protobuf-c-compiler protobuf-compiler pulseaudio librtaudio-dev libgps-dev 
@@ -16,7 +19,7 @@ cd $HOME
 
 # clone git repo
 if [ ! -d openauto ]; then
-    git clone -b crankshaft-ng https://github.com/opencardev/openauto.git
+    git clone -b crankshaft-ng ${GIT_REPO}
 else
     cd openauto
     git reset --hard
