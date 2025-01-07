@@ -2,8 +2,8 @@
 if [ -z "${CPU_CORES_COUNT}" ]; then
   CPU_CORES_COUNT=`grep -c ^processor /proc/cpuinfo`
 fi
-if [-z "${GIT_REPO}" ]; then
-  GIT_REPO='https://github.com/opencardev/openauto.git'
+if [-z "${OPENAUTO_GIT_REPO}" ]; then
+  OPENAUTO_GIT_REPO='https://github.com/opencardev/openauto.git'
 fi
 # Install Pre-reqs
 sudo apt-get -y install cmake build-essential git
@@ -19,7 +19,7 @@ cd $HOME
 
 # clone git repo
 if [ ! -d openauto ]; then
-    git clone -b crankshaft-ng ${GIT_REPO}
+    git clone -b crankshaft-ng ${OPENAUTO_GIT_REPO}
 else
     cd openauto
     git reset --hard
