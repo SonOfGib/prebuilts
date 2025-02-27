@@ -13,8 +13,8 @@ if [ -f ./aasdk/lib/libaasdk.so ]; then
     cp ./aasdk/lib/libaasdk.so ./BINARY_FILES/
 fi
 
-if [ -f ./aasdk/lib/libaasdk_proto.so ]; then
-    cp ./aasdk/lib/libaasdk_proto.so ./BINARY_FILES/
+if [ -f ./protobuf_build/libaap_protobuf.so ]; then
+    cp ./protobuf_build/libaap_protobuf.so ./BINARY_FILES/
 fi
 
 # Copy openauto

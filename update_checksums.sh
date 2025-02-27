@@ -13,7 +13,7 @@ md5sum $(basename autoapp) > autoapp.md5
 md5sum $(basename autoapp_helper) > autoapp_helper.md5
 md5sum $(basename btservice) > btservice.md5
 md5sum $(basename libaasdk.so) > libaasdk.so.md5
-md5sum $(basename libaasdk_proto.so) > libaasdk_proto.so.md5
+md5sum $(basename libaap_protobuf.so) > libaap_protobuf.so.md5
 cd ..
 
 cd udev

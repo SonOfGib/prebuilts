@@ -26,10 +26,16 @@ sudo rm -rf $HOME/aasdk_build
 
 # Create build folder
 mkdir -p $HOME/aasdk_build
+mkdir -p $HOME/protobuf_build
 
 # Create inside build folder
+cd $HOME/protobuf_build
+cmake -DCMAKE_BUILD_TYPE=Release ../aasdk/protobuf
+make
+sudo make install
 cd $HOME/aasdk_build
 cmake -DCMAKE_BUILD_TYPE=Release ../aasdk
 make -j2
+sudo make install
 
 cd $HOME

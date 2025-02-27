@@ -5,8 +5,8 @@ if [ -f ./buildsystem/BINARY_FILES/libaasdk.so ]; then
     cp ./buildsystem/BINARY_FILES/libaasdk.so ./openauto/
 fi
 
-if [ -f ./buildsystem/BINARY_FILES/libaasdk_proto.so ]; then
-    cp ./buildsystem/BINARY_FILES/libaasdk_proto.so ./openauto/
+if [ -f ./buildsystem/BINARY_FILES/libaap_protobuf.so ]; then
+    cp ./buildsystem/BINARY_FILES/libaap_protobuf.so ./openauto/
 fi
 
 # Copy Qt
