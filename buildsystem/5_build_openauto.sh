@@ -41,7 +41,7 @@ ln -s /opt/vc/lib/libbrcmWFC.so /usr/lib/arm-linux-gnueabihf/libWFC.so
 
 # Create inside build folder
 cd $HOME/openauto_build
-cmake -DCMAKE_BUILD_TYPE=Release -DRPI3_BUILD=TRUE -DAASDK_INCLUDE_DIRS="$HOME/aasdk/include" -DAASDK_LIBRARIES="$HOME/aasdk/lib/libaasdk.so" -DAASDK_PROTO_INCLUDE_DIRS="$HOME/aasdk_build" -DAASDK_PROTO_LIBRARIES="$HOME/aasdk/lib/libaasdk_proto.so" ../openauto
-make -j$CPU_CORES_COUNT 2>&1 | tee ../openauto-make$(date +"%Y-%m-%d_%H-%M").log
+cmake -DCMAKE_BUILD_TYPE=Release -DRPI3_BUILD=TRUE ../openauto
+make -j1 2>&1 | tee ../openauto-make$(date +"%Y-%m-%d_%H-%M").log
 
 cd $HOME
